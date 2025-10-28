@@ -10,7 +10,8 @@ requires-python = ">=3.13"
 dependencies = [
     "pandas (>=2.3.3,<3.0.0)",
     "openpyxl (>=3.1.5,<4.0.0)",
-    "ipykernel (>=7.1.0,<8.0.0)"
+    "ipykernel (>=7.1.0,<8.0.0)",
+    "pandasql (>=0.7.3,<0.8.0)"
 ]
 
 [tool.poetry]
