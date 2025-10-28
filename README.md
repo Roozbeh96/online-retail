@@ -20,3 +20,5 @@ Verify installation:
 ```bash
 poetry version
 ```
+
+<pre> ``` PATH ``` </pre>
