@@ -40,3 +40,5 @@ poetry new project_name
 ```
 
 ## 2. Exploratory Data Analysis (EDA)
+
+`src/online_retail/EDA.ipynb`
