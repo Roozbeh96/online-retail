@@ -38,7 +38,11 @@ In case if you want to make environment from scratch, run:(Do not recommended)
 ```bash
 poetry new project_name
 ```
+## 2. Source of Data
 
-## 2. Exploratory Data Analysis (EDA)
+Data is in `data` folder, but you can download from:
+[text](https://www.kaggle.com/datasets/lakshmi25npathi/online-retail-dataset/data)
+
+## 3. Exploratory Data Analysis (EDA)
 
 `src/online_retail/EDA.ipynb`
