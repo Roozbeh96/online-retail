@@ -41,8 +41,10 @@ poetry new project_name
 ## 2. Source of Data
 
 Data is in `data` folder, but you can download from:
-[text](https://www.kaggle.com/datasets/lakshmi25npathi/online-retail-dataset/data)
+[Kaggle Link](https://www.kaggle.com/datasets/lakshmi25npathi/online-retail-dataset/data)
 
 ## 3. Exploratory Data Analysis (EDA)
 
 `src/online_retail/EDA.ipynb`
+
+Explanation of this section is in the notebook file. Install data wrangler in VSCode for having better experience. 
