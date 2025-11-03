@@ -47,4 +47,15 @@ Data is in `data` folder, but you can download from:
 
 `src/online_retail/EDA.ipynb`
 
-Explanation of this section is in the notebook file. Install data wrangler in VSCode for having better experience. 
+Explanation of this section is in the notebook file. Install data wrangler in VSCode for having better experience. In this file, I did Exploratory Data Analysis (EDA), which is RMF analysis. RMF analysis is:<br>
+R -> Recency: How recently a customer made their last purchase -> more engaged and more likely to buy again.<br>
+F -> Frequecy: How often a customer purchase -> Loyal customers.<br>
+M -> Monetary: How much they spent -> spend a lot have more value.<br>
+This is a study that is used for customer segmentation technique. The goal is to quantify customer value and behavior. So using these three criteria, we can segment our customers into 5 categories.<br>
+1. Champions -> High RFM -> loyal and active.<br>
+2. Loyal -> High F but regular M -> Regular customer.<br>
+3. Big Spenders -> High M low F -> High value but occasional<br>
+4. At Risk -> Used to buy but not now -> At risk for churn<br>
+5. Lost -> Have not purchased for a long time.<br>
+
+At the end, I generated a clean table, that contain RMF columns, and score each customer using RMF features.
