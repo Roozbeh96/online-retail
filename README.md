@@ -63,4 +63,4 @@ At the end, I generated a clean table, that contain RMF columns, and score each 
 
 Fig 1: Joint scatter plot of Monetray and Frequency.<br>
 
-<img src="Fig/Mon-Frq.png" alt="jdist-mon-freq" width="400"/><br>
+<img src="Fig/Mon-Frq.png" alt="jdist-mon" width="400"/><br>
