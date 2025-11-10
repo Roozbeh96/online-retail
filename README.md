@@ -60,4 +60,7 @@ This is a study that is used for customer segmentation technique. The goal is to
 
 At the end, I generated a clean table, that contain RMF columns, and score each customer using RMF features. Based on the histogram analysis, Recency has exponential distribution `log(y)=mx+b`, Monetry has log-normal distribution `log(x) ~ N`, and Frequency has power-law distribution `log(y) = mlog(x)+b`. The correlation analysis shows there is a Positive correlation ($\rho = 0.65$) between Monetary and the frequency. It is evident in Fig1. as well.
 
-![Jdist of Monetray and Freq](Fig/Mon-Frq.png "Joint scatter plot of Monetray and Frequency")
+
+Fig 1: Joint scatter plot of Monetray and Frequency.<br>
+
+<img src="Fig/Mon-Frq.png" alt="jdist-mon-freq" width="400"/><br>
