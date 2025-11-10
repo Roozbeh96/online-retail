@@ -64,3 +64,10 @@ At the end, I generated a clean table, that contain RMF columns, and score each 
 Fig 1: Joint scatter plot of Monetray and Frequency.<br>
 
 <img src="Fig/Mon-Frq.png" alt="jdist-mon" width="400"/><br>
+
+
+## 4. Customer segmentation
+
+`src/online_retail/cust_seg.ipynb`
+
+Next, we want to segment our customers into 5 different groups [Champions, Loyal, Big Spenders, At Risk, Lost]. To do so, I give a score to each customer for each RMF feature based on quantile analysis. 
