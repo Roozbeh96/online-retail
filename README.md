@@ -51,7 +51,7 @@ Explanation of this section is in the notebook file. Install data wrangler in VS
 R -> Recency: How recently a customer made their last purchase -> more engaged and more likely to buy again.<br>
 F -> Frequecy: How often a customer purchase -> Loyal customers.<br>
 M -> Monetary: How much they spent -> spend a lot have more value.<br>
-This is a study that is used for customer segmentation technique. The goal is to quantify customer value and behavior. So using these three criteria, we can segment our customers into 5 categories.<br>
+This is a study that is used for customer segmentation technique. RFM is a `KPI` to segment the customers. The goal is to quantify customer value and behavior. So using these three criteria, we can segment our customers into 5 categories.<br>
 1. Champions -> High RFM -> loyal and active.<br>
 2. Loyal -> High F but regular M -> Regular customer.<br>
 3. Big Spenders -> High M low F -> High value but occasional<br>
@@ -70,4 +70,6 @@ Fig 1: Joint scatter plot of Monetray and Frequency.<br>
 
 `src/online_retail/cust_seg.ipynb`
 
-Next, we want to segment our customers into 5 different groups [Champions, Loyal, Big Spenders, At Risk, Lost]. To do so, I give a score to each customer for each RMF feature based on quantile analysis. 
+Next, we want to segment our customers into 5 different groups `[Champions, Loyal, Big Spenders, At Risk, Lost]`. To do so, I give a score to each customer for each RMF feature based on quantile analysis. Customers with `R_score >= 4, F_score >= 4, M_score >= 4` are `Champions`. Customers with `R_score >= 3, F_score >= 4` are `Loyal`. Customers with `M_score >= 4` are `Big Spenders`. Customers with `R_score <= 2, F_score >= 3` are `At Risk`. Customers with `R_score <= 2, F_score <= 2` are `Lost`. `Need Attention` customers could be new customer who have high `R_score`, but low to mid `F_score`, and `M_Score`(i.e., averagly they just had 1.7 transaction within the last 32 days). The figure below shows a bar plot of the average KPIs for different customer segments.
+
+<img src="Fig/KPIs_barplot.pdf" alt="KPI" width="400"/><br>
