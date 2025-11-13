@@ -72,4 +72,4 @@ Fig 1: Joint scatter plot of Monetray and Frequency.<br>
 
 Next, we want to segment our customers into 5 different groups `[Champions, Loyal, Big Spenders, At Risk, Lost]`. To do so, I give a score to each customer for each RMF feature based on quantile analysis. Customers with `R_score >= 4, F_score >= 4, M_score >= 4` are `Champions`. Customers with `R_score >= 3, F_score >= 4` are `Loyal`. Customers with `M_score >= 4` are `Big Spenders`. Customers with `R_score <= 2, F_score >= 3` are `At Risk`. Customers with `R_score <= 2, F_score <= 2` are `Lost`. `Need Attention` customers could be new customer who have high `R_score`, but low to mid `F_score`, and `M_Score`(i.e., averagly they just had 1.7 transaction within the last 32 days). The figure below shows a bar plot of the average KPIs for different customer segments.
 
-<img src="Fig/KPIs_barplot.png" alt="KPIs" width="400"/><br>
+<img src="Fig/KPIs_barplot-1.png" alt="KPIs" width="400"/><br>
