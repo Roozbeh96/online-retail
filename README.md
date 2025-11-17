@@ -73,3 +73,32 @@ Fig 1: Joint scatter plot of Monetray and Frequency.<br>
 Next, we want to segment our customers into 5 different groups `[Champions, Loyal, Big Spenders, At Risk, Lost]`. To do so, I give a score to each customer for each RMF feature based on quantile analysis. Customers with `R_score >= 4, F_score >= 4, M_score >= 4` are `Champions`. Customers with `R_score >= 3, F_score >= 4` are `Loyal`. Customers with `M_score >= 4` are `Big Spenders`. Customers with `R_score <= 2, F_score >= 3` are `At Risk`. Customers with `R_score <= 2, F_score <= 2` are `Lost`. `Need Attention` customers could be new customer who have high `R_score`, but low to mid `F_score`, and `M_Score`(i.e., averagly they just had 1.7 transaction within the last 32 days). The figure below shows a bar plot of the average KPIs for different customer segments.
 
 <img src="Fig/KPIs_barplot-1.png" alt="KPIs" width="400"/><br>
+
+## 5. A/B testing
+
+Since 867 people are in lost group, one of the interesting tests we can do is the following:
+How much discount should we offer the lost group to revive 20% of them with a probability of 90%?
+
+“Customers who spend more always remain our customers, so we can offer promo codes to other customers to increase revenue.”
+
+### process for A/B testing
+- Hypothesis of A/B testing:
+Bussiness hypothesis describe what two product are being compared and what is the desired impact on the product. In this step we should consider what issue we want to fix and which KPI should be tracked to see the influence of the changes in the product. Single Primary Metric should be used to evluate the results of the A/B testing, whether statistic of the control group (Old version of the product) and treatment group (new version of the product) are significantly different or not.
+For choosing the Metric, we should always answer this question: By keep all parameters constant and chosing the Metric, would we achieve our goal? like conversion rate or click through rate(CTR)
+What metric we should use here?
+Then we need to design hypothesis testing (H0, Ha)
+- Design A/B testing:
+1. Power analysis:
+TP: rejecting the null hypothesis when it is wrong(Power = 1- $\beta$)
+FP: rejecting the null hypothesis when it true(Significance level(type I error): $\alpha$)
+FN: rejecting the alternative hypothesis when it is true (tyep II error: $\beta$)
+TN: rejecting the alternative hypothesis when it is wrong (Confidence level= 1-$\alpha$)
+- Choosing the probability of correctly rejecting the null hypothesis (TP = 1-$\beta$) in which $\beta$ is type II error(FN the probability of failing to accept the alternative hypothesis). It is common to choose power = 80%. We are ok with failing to reject the null hypothesis 20 percent of times.
+- Significance level ($\alpha$): The probability of rejecting the null hypothesis while it is true(type I error or FP). When $\alpha = 0.05$ there is 5 percent change of concluding that there is significance difference between control and treatment group when there is no actual difference. If the implementation of the new model is expensive, we should choose smaller $\alpha$ to reject the null hypothesis harder, unless there is significance difference between treatment and control.
+- Minimum Detectable Effect (MDE) or $\delta$: What is the minimum amount of change we aim to observe in the new version to lunch the new version. There is no normal amount that can be considered and usually it is determined by stakeholders. it can be 1% for one product and 5% for another product.
+2. Minimum Sample Size: To avoid bias results, we need to determine minumum number of samples that we should take out of the population. H0: $\mu$ control = $\mu$ treatment. H1: $\mu$ control is not equal to $\mu$ treatment. or for our case H0: the monetray of top 20% customers is not equal to the monetray of same customers in year2. H1: the monetray of top 20% customers is equal to the monetray of same customers in year2.
+Based on CLT, the distribution of the mean of the sample follows the normal distribution. So $\bar{X}_{con} = N(\mu_{con}, \sigma_{con})$ , $\bar{X}_{exp} = N(\mu_{exp}, \sigma_{exp})$, $\bar{X}_{con} - \bar{X}_{exp} = N(\mu_{con}-\mu_{exp}, \sigma_{con}^2/N_{con}+\sigma_{exp}^2/N_{exp})$
+N = ($\sigma_{con}^2+\sigma_{exp}^2$)($z_{1-\alpha/2}+z_{1-\beta}$)^2/$\delta$^2 derived based on AA testing.
+3. Test duration: N/(average # of visitors per day) considers the factors like cristmass can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.
+
+
