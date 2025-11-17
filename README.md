@@ -86,13 +86,16 @@ How much discount should we offer the lost group to revive 20% of them with a pr
 Bussiness hypothesis describe what two product are being compared and what is the desired impact on the product. In this step we should consider what issue we want to fix and which KPI should be tracked to see the influence of the changes in the product. Single Primary Metric should be used to evluate the results of the A/B testing, whether statistic of the control group (Old version of the product) and treatment group (new version of the product) are significantly different or not.
 For choosing the Metric, we should always answer this question: By keep all parameters constant and chosing the Metric, would we achieve our goal? like conversion rate or click through rate(CTR)
 What metric we should use here?
-Then we need to design hypothesis testing (H0, Ha)
+Then we need to bring up hypothesis testing (H0, Ha)
 - Design A/B testing:
-1. Power analysis:
-TP: rejecting the null hypothesis when it is wrong(Power = 1- $\beta$)
-FP: rejecting the null hypothesis when it true(Significance level(type I error): $\alpha$)
-FN: rejecting the alternative hypothesis when it is true (tyep II error: $\beta$)
-TN: rejecting the alternative hypothesis when it is wrong (Confidence level= 1-$\alpha$)
+1. Power analysis:<br>
+FP: The probability of rejecting the null hypothesis when it true(Significance level(type I error): $\alpha$). This is the risk that we take to reject the H0 when it is actually true.<br>
+FN: The probability of rejecting the alternative hypothesis when it is true (tyep II error: $\beta$). This is also a risk we take to reject the H1 when it is actually true.<br>
+TP: The probability of rejecting the null hypothesis when it is wrong(Power = 1- $\beta$)<br>
+TN: The probability of rejecting the alternative hypothesis when it is wrong (Confidence level= 1-$\alpha$)<br>
+P: rejection of H0 or approval of H1.<br>
+N: approval of H0 or rejection of H1.<br>
+Basically, we always take two risks $\alpha$ and $\beta$. If we want to be conservative, support H0 more than H1, we choose $\alpha$ less than $\beta$.
 - Choosing the probability of correctly rejecting the null hypothesis (TP = 1-$\beta$) in which $\beta$ is type II error(FN the probability of failing to accept the alternative hypothesis). It is common to choose power = 80%. We are ok with failing to reject the null hypothesis 20 percent of times.
 - Significance level ($\alpha$): The probability of rejecting the null hypothesis while it is true(type I error or FP). When $\alpha = 0.05$ there is 5 percent change of concluding that there is significance difference between control and treatment group when there is no actual difference. If the implementation of the new model is expensive, we should choose smaller $\alpha$ to reject the null hypothesis harder, unless there is significance difference between treatment and control.
 - Minimum Detectable Effect (MDE) or $\delta$: What is the minimum amount of change we aim to observe in the new version to lunch the new version. There is no normal amount that can be considered and usually it is determined by stakeholders. it can be 1% for one product and 5% for another product.
@@ -100,5 +103,7 @@ TN: rejecting the alternative hypothesis when it is wrong (Confidence level= 1-$
 Based on CLT, the distribution of the mean of the sample follows the normal distribution. So $\bar{X}_{con} = N(\mu_{con}, \sigma_{con})$ , $\bar{X}_{exp} = N(\mu_{exp}, \sigma_{exp})$, $\bar{X}_{con} - \bar{X}_{exp} = N(\mu_{con}-\mu_{exp}, \sigma_{con}^2/N_{con}+\sigma_{exp}^2/N_{exp})$
 N = ($\sigma_{con}^2+\sigma_{exp}^2$)($z_{1-\alpha/2}+z_{1-\beta}$)^2/$\delta$^2 derived based on AA testing.
 3. Test duration: N/(average # of visitors per day) considers the factors like cristmass can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.
+Too small test duration result into novelty effect. Users tend to react quickly to a new platform which is considered illusionary. 
+Too long test duration result into maturation effect in which the test is affected by the external parameters. 
 
 
