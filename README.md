@@ -89,21 +89,24 @@ What metric we should use here?
 Then we need to bring up hypothesis testing (H0, Ha)
 - Design A/B testing:
 1. Power analysis:<br>
-FP: The probability of rejecting the null hypothesis when it true(Significance level(type I error): $\alpha$). This is the risk that we take to reject the H0 when it is actually true.<br>
-FN: The probability of rejecting the alternative hypothesis when it is true (tyep II error: $\beta$). This is also a risk we take to reject the H1 when it is actually true.<br>
+FP: The probability of rejecting the null hypothesis when it true(Significance level(type I error): $\alpha$). This is the risk that we take to reject the H0 when it is actually true. This values is used to calculate the Confidence Interval(CI).<br>
+FN: The probability of rejecting the alternative hypothesis when it is true (tyep II error: $\beta$). This is also a risk we take to reject the H1 when it is actually true. We use $\beta$ when we want to find minimum sample size. This parameter is not used for statistical analysis.<br>
 TP: The probability of rejecting the null hypothesis when it is wrong(Power = 1- $\beta$)<br>
-TN: The probability of rejecting the alternative hypothesis when it is wrong (Confidence level= 1-$\alpha$)<br>
+TN: The probability of rejecting the alternative hypothesis when it is wrong (Confidence level= 1-$\alpha$). This probability is used to analyze the CI. If with high probability (1-$\alpha$) the CI covers a narrow range, we can confidently conclude the test with high accuracy.<br>
 P: rejection of H0 or approval of H1.<br>
 N: approval of H0 or rejection of H1.<br>
 Basically, we always take two risks $\alpha$ and $\beta$. If we want to be conservative, support H0 more than H1, we choose $\alpha$ less than $\beta$.
-- Choosing the probability of correctly rejecting the null hypothesis (TP = 1-$\beta$) in which $\beta$ is type II error(FN the probability of failing to accept the alternative hypothesis). It is common to choose power = 80%. We are ok with failing to reject the null hypothesis 20 percent of times.
+- Choosing the probability of correctly rejecting the null hypothesis (TP = 1-$\beta$) in which $\beta$ is type II error(FN the probability of failing to accept the alternative hypothesis when it is true). It is common to choose power = 80%. We are ok with failing to reject the null hypothesis when it is wrong 20 percent of times.
 - Significance level ($\alpha$): The probability of rejecting the null hypothesis while it is true(type I error or FP). When $\alpha = 0.05$ there is 5 percent change of concluding that there is significance difference between control and treatment group when there is no actual difference. If the implementation of the new model is expensive, we should choose smaller $\alpha$ to reject the null hypothesis harder, unless there is significance difference between treatment and control.
-- Minimum Detectable Effect (MDE) or $\delta$: What is the minimum amount of change we aim to observe in the new version to lunch the new version. There is no normal amount that can be considered and usually it is determined by stakeholders. it can be 1% for one product and 5% for another product.
+- Minimum Detectable Effect (MDE) or $\delta$: What is the minimum amount of change we aim to observe in the new version to lunch the new version. There is no normal amount that can be considered and usually it is determined by stakeholders. it can be 1% for one product and 5% for another product. This variable is used for computing practical significance. If MDE be less than the lower bound of the CI, we can say the model is practically significant.
 2. Minimum Sample Size: To avoid bias results, we need to determine minumum number of samples that we should take out of the population. H0: $\mu$ control = $\mu$ treatment. H1: $\mu$ control is not equal to $\mu$ treatment. or for our case H0: the monetray of top 20% customers is not equal to the monetray of same customers in year2. H1: the monetray of top 20% customers is equal to the monetray of same customers in year2.
 Based on CLT, the distribution of the mean of the sample follows the normal distribution. So $\bar{X}_{con} = N(\mu_{con}, \sigma_{con})$ , $\bar{X}_{exp} = N(\mu_{exp}, \sigma_{exp})$, $\bar{X}_{con} - \bar{X}_{exp} = N(\mu_{con}-\mu_{exp}, \sigma_{con}^2/N_{con}+\sigma_{exp}^2/N_{exp})$
-N = ($\sigma_{con}^2+\sigma_{exp}^2$)($z_{1-\alpha/2}+z_{1-\beta}$)^2/$\delta$^2 derived based on AA testing.
-3. Test duration: N/(average # of visitors per day) considers the factors like cristmass can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.
+N = ($\sigma_{con}^2+\sigma_{exp}^2$)$(z_{1-\alpha/2}+z_{1-\beta})^{2}$/$\delta^{2}$ derived based on AA testing. As the risks we are taking increases, $\alpha$ and $\beta$, the number of samples needed for the test reduces. If MDE be small, then we need more samples to detect the rise in the outcome.
+3. Test duration: N/(average # of visitors per day) considers the factors like Christmas can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.
 Too small test duration result into novelty effect. Users tend to react quickly to a new platform which is considered illusionary. 
 Too long test duration result into maturation effect in which the test is affected by the external parameters. 
+_ If the test is statistically and practically significant and the CI is narrow, it shows the test is performed accurately, and precision is high, and we can generalize the test.
 
 
+## 6. Causal inference
+For the causal inference also we need to have treatment and control group. However, the test is not run in randomized way and we need to use previous experimental data(test can not be re run). Not randomizing the samples to control and treatment group my causes biased result and confonded by other parameters. In causal inference we are trying to infere by removing the effect of the confond parameters which comes from not randomized controled test(RCT).
