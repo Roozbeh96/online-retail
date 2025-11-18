@@ -11,5 +11,6 @@ def load_data(*, file_path: str) -> pd.DataFrame:
     
     """
     
-    data = pd.read_excel(file_path)
+    data = pd.read_excel(file_path, sheet_name= None)
+    data = pd.concat(data.values(), ignore_index= True)
     return data

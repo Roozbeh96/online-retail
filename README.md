@@ -76,34 +76,36 @@ Next, we want to segment our customers into 5 different groups `[Champions, Loya
 
 ## 5. A/B testing
 
-Since 867 people are in lost group, one of the interesting tests we can do is the following:
-How much discount should we offer the lost group to revive 20% of them with a probability of 90%?
-
-“Customers who spend more always remain our customers, so we can offer promo codes to other customers to increase revenue.”
-
+Business Question: The company runs an expensive training program for salespeople during the last three months of the year (October–December). Only half of the salespeople are trained. We want to know:<br>
+Does assigning customers to trained salespeople increase customer spending enough to justify the cost of the training program?<br>
+We randomly assigned customers to trained and untrained sales persons. Customers with `CustomerID % 2 == 0` are assigned to trained customers and customers with `CustomerID % 2 == 1` are assigned to untrained customers.
 ### process for A/B testing
 - Hypothesis of A/B testing:
-Bussiness hypothesis describe what two product are being compared and what is the desired impact on the product. In this step we should consider what issue we want to fix and which KPI should be tracked to see the influence of the changes in the product. Single Primary Metric should be used to evluate the results of the A/B testing, whether statistic of the control group (Old version of the product) and treatment group (new version of the product) are significantly different or not.
-For choosing the Metric, we should always answer this question: By keep all parameters constant and chosing the Metric, would we achieve our goal? like conversion rate or click through rate(CTR)
-What metric we should use here?
-Then we need to bring up hypothesis testing (H0, Ha)
+Bussiness hypothesis describe what two product are being compared and what is the desired impact on the product. In this step we should consider what issue we want to fix and which KPI should be tracked to see the influence of the changes in the product. Single Primary Metric should be used to evluate the results of the A/B testing, whether statistic of the control group (old version of the product) and treatment group (new version of the product) are significantly different or not.
+For choosing the Metric, we should always answer this question: By keep all parameters constant and choosing the Metric, would we achieve our goal? like conversion rate or click through rate(CTR)
+The question is What metric we should use here?<br>
+For each customer in the Oct–Dec window, we compute:<br>
+`Monetary_Q4` = total amount spent by that customer in this period. This is the KPI we’re comparing between treatment and control. Is the average Q4 spending (`Monetary_Q4`) higher for customers served by trained salespeople than for those served by untrained salespeople?
+H0: The `Monetary_Q4` for control and treatment group are the same ($\mu_{T}=\mu_{C}$).
+Ha: The `Monetary_Q4` for treatment group is higher than control group ($\mu_{T}>\mu_{C}$) which is one-sided test.
 - Design A/B testing:
 1. Power analysis:<br>
 FP: The probability of rejecting the null hypothesis when it true(Significance level(type I error): $\alpha$). This is the risk that we take to reject the H0 when it is actually true. This values is used to calculate the Confidence Interval(CI).<br>
-FN: The probability of rejecting the alternative hypothesis when it is true (tyep II error: $\beta$). This is also a risk we take to reject the H1 when it is actually true. We use $\beta$ when we want to find minimum sample size. This parameter is not used for statistical analysis.<br>
+FN: The probability of rejecting the alternative hypothesis when it is true (tyep II error: $\beta$). This is also a risk we take to reject the Ha when it is actually true. We use $\beta$ when we want to find minimum sample size. This parameter is not used for statistical analysis.<br>
 TP: The probability of rejecting the null hypothesis when it is wrong(Power = 1- $\beta$)<br>
 TN: The probability of rejecting the alternative hypothesis when it is wrong (Confidence level= 1- $\alpha$ ). This probability is used to analyze the CI. If with high probability (1- $\alpha$ ) the CI covers a narrow range, we can confidently conclude the test with high accuracy.<br>
-P: rejection of H0 or approval of H1.<br>
-N: approval of H0 or rejection of H1.<br>
-Basically, we always take two risks $\alpha$ and $\beta$. If we want to be conservative, support H0 more than H1, we choose $\alpha$ less than $\beta$.
-- Choosing the probability of correctly rejecting the null hypothesis (TP = 1- $\beta$) in which $\beta$ is type II error(FN the probability of failing to accept the alternative hypothesis when it is true). It is common to choose power = 80%. We are ok with failing to reject the null hypothesis when it is wrong 20 percent of times.
-- Significance level ($\alpha$): The probability of rejecting the null hypothesis while it is true(type I error or FP). When $\alpha = 0.05$ there is 5 percent change of concluding that there is significance difference between control and treatment group when there is no actual difference. If the implementation of the new model is expensive, we should choose smaller $\alpha$ to reject the null hypothesis harder, unless there is significance difference between treatment and control.
+P: rejection of H0 or approval of Ha.<br>
+N: approval of H0 or rejection of Ha.<br>
+Basically, we always take two risks $\alpha$ and $\beta$. If we want to be conservative, support H0 more than Ha, we choose $\alpha$ less than $\beta$.
+- Choosing the probability of correctly rejecting the null hypothesis (TP = 1- $\beta$) in which $\beta$ is type II error(FN: the probability of failing to accept the alternative hypothesis when it is true), it is common to choose power = 80%. We are ok with failing to reject the null hypothesis when it is wrong 20 percent of times.
+- Significance level ($\alpha$): The probability of rejecting the null hypothesis while it is true(type I error or FP). When $\alpha = 0.05$ there is 5 percent change of concluding that there is significance difference between control and treatment group when there is no actual difference. If the implementation of the new model is expensive, we should choose smaller $\alpha$ to harder reject the null hypothesis, unless there is significance difference between treatment and control.
 - Minimum Detectable Effect (MDE) or $\delta$: What is the minimum amount of change we aim to observe in the new version to lunch the new version. There is no normal amount that can be considered and usually it is determined by stakeholders. it can be 1% for one product and 5% for another product. This variable is used for computing practical significance. If MDE be less than the lower bound of the CI, we can say the model is practically significant.
-2. Minimum Sample Size: To avoid bias results, we need to determine minumum number of samples that we should take out of the population. H0: $\mu_{control}$ = $\mu_{treatment}$. H1: $\mu$ control is not equal to $\mu$ treatment. or for our case H0: the monetray of top 20% customers is not equal to the monetray of same customers in year2. H1: the monetray of top 20% customers is equal to the monetray of same customers in year2.
-Based on CLT, the distribution of the mean of the sample follows the normal distribution. So $\overline{X_{con}} = N(\mu_{con}, \sigma_{con})$ , $\overline{X_{exp}} = N(\mu_{exp}, \sigma_{exp})$, $\overline{X_{con}} - \overline{X_{exp}} = N(\mu_{con}-\mu_{exp}, \sigma_{con}^{2}/N_{con}+\sigma_{exp}^{2}/N_{exp})$ N = $\frac{(\sigma_{con}^{2}+\sigma_{exp}^{2})*(z_{1-\alpha/2}+z_{1-\beta})^{2}}{\delta^{2}}$ derived based on AA testing. As the risks we are taking increases, $\alpha$ and $\beta$, the number of samples needed for the test reduces. If MDE be small, then we need more samples to detect the rise in the outcome. Large $\delta$ is a stronger signal, so it is easier to be detected so we need fewer samples. The smaller the effect you want to detect, the more data you must collect. The bigger the effect, the easier it is to detect, so fewer samples are needed.
-3. Test duration: N/(average # of visitors per day) considers the factors like Christmas can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.
-Too small test duration result into novelty effect. Users tend to react quickly to a new platform which is considered illusionary. 
-Too long test duration result into maturation effect in which the test is affected by the external parameters. 
+2. Minimum Sample Size: To avoid bias results, we need to determine minumum number of samples that we should take out of the population. H0: $\mu_{control}$ = $\mu_{treatment}$. Ha: $\mu$ control is less than the $\mu$ treatment.<br>
+Based on CLT, the distribution of the mean of the sample follows the normal distribution. So $\overline{X_{con}} = N(\mu_{con}, \sigma_{con})$ , $\overline{X_{exp}} = N(\mu_{exp}, \sigma_{exp})$, $\overline{X_{con}} - \overline{X_{exp}} = N(\mu_{con}-\mu_{exp}, \sigma_{con}^{2}/N_{con}+\sigma_{exp}^{2}/N_{exp})$ N = $\frac{(\sigma_{con}^{2}+\sigma_{exp}^{2})*(z_{1-\alpha/2}+z_{1-\beta})^{2}}{\delta^{2}}$ derived based on AA testing. As the risks we are taking increases, $\alpha$ and $\beta$, the number of samples needed for the test reduces. If MDE be small, then we need more samples to detect the rise in the outcome. Large $\delta$ is a stronger signal, so it is easier to be detected so we need fewer samples. The smaller the effect you want to detect, the more data(samples) you must collect. The bigger the effect, the easier it is to detect, so fewer samples are needed.
+3. Test duration: N/(average # of visitors per day) considers the factors like Christmas can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.<br>
+Too small test duration result into novelty effect. Users tend to react quickly to a new platform which is considered illusionary.<br>
+Too long test duration result into maturation effect in which the test is affected by the external parameters.<br>
+For our study it is just 
 - If the test is statistically and practically significant and the CI is narrow, it shows the test is performed accurately, and precision is high, and we can generalize the test.
 
 
