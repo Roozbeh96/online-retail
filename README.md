@@ -78,7 +78,7 @@ Next, we want to segment our customers into 5 different groups `[Champions, Loya
 
 Business Question: The company runs an expensive training program for salespeople during the last three months of the year (October–December). Only half of the salespeople are trained. We want to know:<br>
 Does assigning customers to trained salespeople increase customer spending enough to justify the cost of the training program?<br>
-We randomly assigned customers to trained and untrained sales persons. Customers with `CustomerID % 2 == 0` are assigned to trained customers and customers with `CustomerID % 2 == 1` are assigned to untrained customers.
+We randomly assigned customers to trained and untrained sales persons. Customers with `CustomerID % 2 == 1` are assigned to trained customers and customers with `CustomerID % 2 == 0` are assigned to untrained customers.
 ### process for A/B testing
 - Hypothesis of A/B testing:
 Bussiness hypothesis describe what two product are being compared and what is the desired impact on the product. In this step we should consider what issue we want to fix and which KPI should be tracked to see the influence of the changes in the product. Single Primary Metric should be used to evluate the results of the A/B testing, whether statistic of the control group (old version of the product) and treatment group (new version of the product) are significantly different or not.
@@ -110,4 +110,4 @@ For our study it is just
 
 
 ## 6. Causal inference
-For the causal inference also we need to have treatment and control group. However, the test is not run in randomized way and we need to use previous experimental data(test can not be re run). Not randomizing the samples to control and treatment group my causes biased result and confonded by other parameters. In causal inference we are trying to infere by removing the effect of the confond parameters which comes from not randomized controled test(RCT).
+For the causal inference also we need to have treatment and control group. However, the test is not run in randomized way and we need to use previous experimental data(test can not be re run). Not randomizing the samples to control and treatment group my causes biased result and confonded by other parameters. In causal inference we are trying to infere by removing the effect of the confond parameters which comes from not randomized controled test(RCT). In the case we had here, the A/B test is done in Christmas time. So by default the sale is high. I know that if sale in treatment was high so the sale in control also should have been high, but the trained sales persons may had better performance in Christmas time. We want to see whether the results are affected by the season or not.
