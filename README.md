@@ -74,7 +74,18 @@ Next, we want to segment our customers into 5 different groups `[Champions, Loya
 
 <img src="Fig/KPIs_barplot-1.png" alt="KPIs" width="400"/><br>
 
-## 5. A/B testing
+## 5. Hypothesis testing
+
+One of the important topics we should know before A/b testing, is hypothesis testing. For hypothesis testing we have a null hypothesis H0 (unfavorable condition) and try to reject the null hypothesis using alternative hypothesis Ha (favorable). <br>
+Let us design a problem. <br>
+Class A: has IQ scores<br>
+Class B: has IQ scores<br>
+You want to know:
+Is the average IQ of Class A statistically significantly different from the average IQ of Class B? <br>
+H0: $\mu_{A} = \mu_{B}$
+Ha: $\mu_{A} \neq \mu_{B}$
+
+## 6. A/B testing
 
 Business Question: The company runs an expensive training program for salespeople during the last three months of the year (October–December). Only half of the salespeople are trained. We want to know:<br>
 Does assigning customers to trained salespeople increase customer spending enough to justify the cost of the training program?<br>
@@ -109,5 +120,5 @@ For our study it is just
 - If the test is statistically and practically significant and the CI is narrow, it shows the test is performed accurately, and precision is high, and we can generalize the test.
 
 
-## 6. Causal inference
+## 7. Causal inference
 For the causal inference also we need to have treatment and control group. However, the test is not run in randomized way and we need to use previous experimental data(test can not be re run). Not randomizing the samples to control and treatment group my causes biased result and confonded by other parameters. In causal inference we are trying to infere by removing the effect of the confond parameters which comes from not randomized controled test(RCT). In the case we had here, the A/B test is done in Christmas time. So by default the sale is high. I know that if sale in treatment was high so the sale in control also should have been high, but the trained sales persons may had better performance in Christmas time. We want to see whether the results are affected by the season or not.
