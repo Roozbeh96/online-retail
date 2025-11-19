@@ -86,9 +86,9 @@ H0: $\mu_{A} = \mu_{B}$<br>
 Ha: $\mu_{A} \neq \mu_{B}$<br>
 This is a two-sided test because we don’t specify which class is higher.<br>
 Sample mean and sample standard deviation or standard error(SE):<br>
-For class A: Mean of class: $\mu_{A}$, Standard deviation of class: $s_{A}$, Sample size: ​$n_{A}$, Standard deviation of the mean distribution based on CLT(SE): SE = $s_{A}/\sqrt{n_{A}}$
+For class A: Mean of class: $\mu_{A}$, Standard deviation of class: $s_{A}$, Sample size: ​$n_{A}$ , Standard deviation of the mean distribution based on CLT(SE): SE = $s_{A}/\sqrt{n_{A}}$<br>
 For class B: Mean of class: $\mu_{B}$, Standard deviation of class: $s_{B}$, Sample size: ​$n_{B}$, Standard deviation of the mean distribution based on CLT(SE): SE = $s_{B}/\sqrt{n_{B}}$<br>
-as the number of samples increases, the standard deviation of the mean distribution reduces and we approaching the true mean of the population. To judge whether these two classes are statistically significantly different or not, we need to subtract the two means $\mu_{A}-\mu_{B}$, and divide by standard deviation of the subtracted mean distribution $\sqrt{\frac{s_{A}^2}{n_{A}}+\frac{s_{B}^2}{n_{B}}}$ to standardize the value and use famous test statistics like t-test, z-test, f-distribution, $\chi^2$ test, etc. If number of sample be less than 30 or we do not know about the standard deviation of the population $\sigma$ and we only have standard deviation of the sample $s$, we use t-test, otherwise we use z-test. 
+as the number of samples increases, the standard deviation of the mean distribution reduces and we approaching the true mean of the population. To judge whether these two classes are statistically significantly different or not, we need to subtract the two means $\mu_{A}-\mu_{B}$, and divide by standard deviation of the subtracted mean distribution $\sqrt{\frac{s_{A}^2}{n_{A}}+\frac{s_{B}^2}{n_{B}}}$ to standardize the value and use famous test statistics like t-test, z-test, F-distribution, $\chi^2$ test, etc. If number of sample be less than 30 or we do not know about the standard deviation of the population $\sigma$ and we only have standard deviation of the sample $s$, we use t-test, otherwise we use z-test. 
 
 ## 6. A/B testing
 
