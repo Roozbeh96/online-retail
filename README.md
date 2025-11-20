@@ -127,7 +127,7 @@ Based on CLT, the distribution of the mean of the sample follows the normal dist
 <img src="Fig/proof1.jpeg" alt="proof1" width="400"/><br>
 <img src="Fig/proof2.jpeg" alt="proof2" width="400"/><br>
 <img src="Fig/proof3.jpeg" alt="proof3" width="400"/><br>
-3. Test duration: N/(average # of visitors per day) considers the factors like Christmas can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.<br>
+3. Test duration: n/(average # of visitors per day) considers the factors like Christmas can affect the number of visitors of the page. So do not run the experiment in those days which result into inaccurate conclusion.<br>
 Too small test duration result into novelty effect. Users tend to react quickly to a new platform which is considered illusionary.<br>
 Too long test duration result into maturation effect in which the test is affected by the external parameters.<br>
 For our study, the duration of the study should be such that we have enough number of customers in each group.
