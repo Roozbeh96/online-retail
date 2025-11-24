@@ -138,4 +138,5 @@ For our study, the duration of the study should be such that we have enough numb
 For the causal inference also we need to have treatment and control group. However, the test is not run in randomized way and we need to use previous experimental data(test can not be re run). Not randomizing the samples to control and treatment group my causes biased result and confonded by other parameters. In causal inference we are trying to infere by removing the effect of the confond parameters which comes from not randomized controled test(RCT). In the case we had here, the A/B test is done in Christmas time. So by default, the sale is high, and purchases of the treatment and control groups can be the same. In this situation, I want to see whether the results are affected by the season or not.
 
 ## 8. Customer LifeTime Value (CLV)
+## 9. Recommendation Systems
 
